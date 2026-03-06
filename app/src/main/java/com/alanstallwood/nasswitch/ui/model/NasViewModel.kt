@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
 
 class NasViewModel(
     private val wakeNas: WakeNas,
@@ -19,6 +20,9 @@ class NasViewModel(
     private val _uiState = MutableStateFlow(NasUiState())
     val uiState: StateFlow<NasUiState> = _uiState.asStateFlow()
 
+    init {
+        startStatusPolling()
+    }
     fun refreshStatus() {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true, error = null)
@@ -57,6 +61,15 @@ class NasViewModel(
                 refreshStatus()
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(error = e.message)
+            }
+        }
+    }
+
+    private fun startStatusPolling() {
+        viewModelScope.launch {
+            while (true) {
+                refreshStatus()
+                delay(5000) // every 5 seconds
             }
         }
     }

@@ -13,17 +13,17 @@ import com.alanstallwood.nasswitch.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
 
-    private lateinit var container: AppContainer
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        container = AppContainer(this)
+        val container = (application as NasApplication).container
 
         setContent {
             MyApplicationTheme {
                 val navController = rememberNavController()
                 val viewModel = container.createViewModel()
                 val dataStore = container.getDataStore()
+                val secureKeyStore = container.getSecureKeyStore()
+                val networkUtils = container.getNetworkUtils();
 
                 NavHost(
                     navController = navController,
@@ -39,6 +39,8 @@ class MainActivity : ComponentActivity() {
                     composable(NasDestinations.CONFIG_SCREEN) {
                         NasConfigScreen(
                             dataStore = dataStore,
+                            secureKeyStore = secureKeyStore,
+                            networkUtils = networkUtils,
                             onBack = { navController.popBackStack() }
                         )
                     }

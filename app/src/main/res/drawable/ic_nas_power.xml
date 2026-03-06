@@ -1,0 +1,30 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- NAS body -->
+    <path
+        android:fillColor="#37474F"
+        android:pathData="M3,5h18c1.1,0 2,0.9 2,2v10c0,1.1 -0.9,2 -2,2H3c-1.1,0 -2,-0.9 -2,-2V7c0,-1.1 0.9,-2 2,-2z"/>
+
+    <!-- Drive bays -->
+    <!-- <path -->
+        <!-- android:fillColor="#B0BEC5" -->
+        <!-- android:pathData="M6,8h12v2H6zM6,12h12v2H6z"/> -->
+
+    <!-- Status LED -->
+    <!-- <path -->
+        <!-- android:fillColor="#4CAF50" -->
+        <!-- android:pathData="M18,16h2v2h-2z"/> -->
+
+    <!-- Power symbol -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M12,7v4M9.5,9.5a3.5,3.5 0 1,0 5,0"
+        android:strokeWidth="1.5"
+        android:strokeColor="#FFFFFF"
+        android:fillAlpha="0"/>
+
+</vector>

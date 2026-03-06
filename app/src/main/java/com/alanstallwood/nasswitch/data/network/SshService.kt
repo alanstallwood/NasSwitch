@@ -33,7 +33,11 @@ class SshService {
                 cmd.join() // wait for completion
             }
 
-        } finally {
+        }
+        catch(it: Exception) {
+            println("Error: ${it.message}")
+        }
+        finally {
             ssh.disconnect()
         }
     }
